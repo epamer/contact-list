@@ -1,0 +1,16 @@
+@import '../sass/variables.scss';
+
+mat-sidenav-container {
+  height: 100vh;
+}
+
+mat-sidenav {
+  min-width: 30vw;
+  overflow: auto;
+  background-color: $bg-sidebar;
+  padding-top: 4rem;
+}
+
+mat-sidenav-content {
+  padding-top: 4rem;
+}

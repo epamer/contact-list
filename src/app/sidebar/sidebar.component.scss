@@ -1,0 +1,35 @@
+@import '../../sass/variables.scss';
+
+.group {
+  &__letter {
+    color: $color-light;
+    font-weight: lighter;
+    padding-left: 1rem;
+
+    &::after {
+      content: '';
+      display: block;
+      border-bottom: 1px solid $color-light;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    list-style: none;
+    padding: 1rem 1rem 1rem 2rem;
+
+    &:hover {
+      color: $color-light;
+      cursor: pointer;
+    }
+    &--active {
+      background-color: $bg-active;
+      color: #fff;
+      pointer-events: none;
+    }
+  }
+}

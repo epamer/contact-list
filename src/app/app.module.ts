@@ -7,9 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ContactModule } from './contact/contact.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -17,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     SidebarModule,
     HttpClientModule,
+    ContactModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

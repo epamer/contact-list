@@ -1,13 +1,6 @@
-<aside>
-  <section class="group" *ngFor="let group of contactsByGroup | keyvalue">
-    <h2 class="group__letter">{{ group.key }}</h2>
-    <ul class="group__list" *ngFor="let contact of group.value">
-      <li
-        class="group__item"
-        [ngClass]="contact.id === activeId && 'group__item--active'"
-      >
-        <span>{{ contact.firstName }} {{ contact.lastName }}</span>
-      </li>
-    </ul>
-  </section>
+<aside class="container">
+  <app-sidebar-list
+    [contactsByGroup]="contactsByGroup$ | async"
+    [editItemId]="editItemId$ | async"
+  ></app-sidebar-list>
 </aside>

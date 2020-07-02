@@ -1,0 +1,67 @@
+<form class="form" [formGroup]="form">
+  <div class="form__item">
+    <label for="firstName" class="form__label">first name</label
+    ><input
+      id="firstName"
+      type="text"
+      class="form__input"
+      formControlName="firstName"
+    />
+  </div>
+
+  <div class="form__item">
+    <label for="lastName" class="form__label">last name</label
+    ><input
+      id="lastName"
+      type="text"
+      class="form__input"
+      formControlName="lastName"
+    />
+  </div>
+
+  <div class="form__item">
+    <label for="phone" class="form__label">phone</label
+    ><input
+      id="phone"
+      type="text"
+      class="form__input"
+      formControlName="phone"
+    />
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="form__item">
+    <label for="email" class="form__label">email</label
+    ><input
+      id="email"
+      type="text"
+      class="form__input"
+      formControlName="email"
+    />
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="form__item">
+    <label for="address" class="form__label">address</label>
+    <textarea
+      id="address"
+      type="text"
+      class="form__input"
+      formControlName="address"
+    ></textarea>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="form__item">
+    <label for="note" class="form__label">note</label>
+    <textarea
+      id="note"
+      type="text"
+      class="form__input"
+      formControlName="note"
+    ></textarea>
+  </div>
+</form>

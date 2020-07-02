@@ -1,0 +1,7 @@
+<app-contact-form [contact]="contact$ | async" [mode]="mode"></app-contact-form>
+
+<app-contact-navbar
+  [id]="id"
+  [mode]="mode"
+  (editContact)="onEditContact($event)"
+></app-contact-navbar>

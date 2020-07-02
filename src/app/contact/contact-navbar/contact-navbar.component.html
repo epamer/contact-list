@@ -1,0 +1,26 @@
+<nav class="navbar container">
+  <a
+    [hidden]="mode === 'edit' || mode === 'create'"
+    class="navbar__btn navbart__btn--add"
+    mat-stroked-button
+    [routerLink]="['/contacts', 'create']"
+  >
+    +
+  </a>
+
+  <a
+    *ngIf="isDisplay; else doneBtn"
+    [hidden]="id === undefined || id === null"
+    class="navbar__btn navbart__btn--add"
+    mat-stroked-button
+    [routerLink]="['/contacts', 'edit', id]"
+  >
+    Edit
+  </a>
+
+  <ng-template #doneBtn>
+    <button class="navbar__btn" mat-stroked-button (click)="onEditHandler()">
+      Done
+    </button>
+  </ng-template>
+</nav>

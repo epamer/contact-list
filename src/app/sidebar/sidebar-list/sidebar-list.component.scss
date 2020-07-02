@@ -1,0 +1,23 @@
+@import '../../../sass/variables.scss';
+
+.group {
+  &__letter {
+    color: $color-light;
+    font-weight: lighter;
+    padding-left: 1rem;
+
+    &::after {
+      content: '';
+      display: block;
+      border-bottom: 1px solid $color-light;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+  }
+  &__item {
+    list-style: none;
+  }
+}

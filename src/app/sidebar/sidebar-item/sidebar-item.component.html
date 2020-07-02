@@ -1,0 +1,18 @@
+<div class="aside-contact">
+  <a
+    class="aside-contact__link"
+    [routerLink]="['/contacts', contact.id]"
+    routerLinkActive="aside-contact__link--active"
+  >
+    {{ contact.firstName }} {{ contact.lastName }}
+  </a>
+
+  <button
+    *ngIf="editItemId === contact.id"
+    mat-icon-button
+    class="aside-contact__btn"
+    (click)="onRemoveItem()"
+  >
+    <mat-icon>remove_circle</mat-icon>
+  </button>
+</div>

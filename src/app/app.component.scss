@@ -5,12 +5,12 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
-  min-width: 30vw;
+  min-width: 20vw;
   overflow: auto;
   background-color: $bg-sidebar;
-  padding-top: 4rem;
+  padding-top: 3rem;
 }
 
 mat-sidenav-content {
-  padding-top: 4rem;
+  padding: 3rem 2rem;
 }

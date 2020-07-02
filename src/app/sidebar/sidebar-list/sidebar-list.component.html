@@ -1,0 +1,13 @@
+<ng-container *ngFor="let group of contactsByGroup | keyvalue">
+  <section class="group" *ngIf="group.value">
+    <h2 class="group__letter">{{ group.key | uppercase }}</h2>
+    <ul class="group__list" *ngFor="let contact of group.value">
+      <li class="group__item">
+        <app-sidebar-item
+          [contact]="contact"
+          [editItemId]="editItemId"
+        ></app-sidebar-item>
+      </li>
+    </ul>
+  </section>
+</ng-container>

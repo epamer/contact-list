@@ -899,6 +899,15 @@
       "phone": "767-843-4388",
       "address": "5 Nova Parkway",
       "note": "Integrated leading edge parallelism"
+    },
+    {
+      "address": "56 Maple Trail",
+      "email": "gtween0@cnn.com",
+      "firstName": "Gar",
+      "id": 101,
+      "lastName": "Tween",
+      "note": "Automated multimedia moratorium",
+      "phone": "197-852-1329"
     }
   ]
 }

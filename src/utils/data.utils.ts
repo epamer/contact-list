@@ -15,7 +15,10 @@ function insertElement(contacts: Contact[], el: Contact): Contact[] {
   return contacts.concat(el);
 }
 
-export function mapContacts(arr: Contact[]): ContactsByGroup {
+export function mapContacts(arr: Contact[] = []): ContactsByGroup {
+  if (arr && !arr.length) {
+    return {};
+  }
   return arr.reduce((acc: ContactsByGroup, curr: Contact): ContactsByGroup => {
     const key: string = curr.lastName.trim().charAt(0).toLowerCase();
     const contacts: Contact[] = acc[key] || [];

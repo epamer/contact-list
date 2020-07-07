@@ -41,7 +41,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
   }
 
   getContactById(id: number): Observable<Contact> {
-    return this.appService.getCotactById(id);
+    return this.appService.getContactById(id);
   }
 
   getCurrentId(): Observable<string> {

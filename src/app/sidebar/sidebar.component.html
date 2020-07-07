@@ -1,6 +1,6 @@
 <aside class="container">
   <app-sidebar-list
-    [contactsByGroup]="contactsByGroup$ | async"
+    [contactsByGroup]="contacts$ | async | contactsByGroup"
     [editItemId]="editItemId$ | async"
   ></app-sidebar-list>
 </aside>

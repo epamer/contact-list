@@ -25,7 +25,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.id = this.getItemId();
     this.propagateParamValue(this.id);
-    this.contact$ = this.getContactById(this.id);
+    // this.contact$ = this.getContactById(this.id);
   }
 
   ngOnDestroy(): void {
@@ -48,7 +48,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
     this.routerStateService.setRouterParam(id);
   }
 
-  getContactById(id: string): Observable<Contact> {
-    return this.service.getCotactById(+id);
-  }
+  // getContactById(id: string): Observable<Contact> {
+  //   return this.service.getCotactById(+id);
+  // }
 }

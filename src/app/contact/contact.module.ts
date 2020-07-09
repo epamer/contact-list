@@ -6,7 +6,6 @@ import { ContactEditComponent } from './contact-edit/contact-edit.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { ContactNavbarComponent } from './contact-navbar/contact-navbar.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -15,7 +14,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ContactDetailsComponent,
     ContactCreateComponent,
     ContactEditComponent,
-    ContactNavbarComponent,
     ContactFormComponent,
   ],
   imports: [

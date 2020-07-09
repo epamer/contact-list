@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ContactsByGroup } from 'src/app/app.model';
 
 @Component({
@@ -6,13 +6,14 @@ import { ContactsByGroup } from 'src/app/app.model';
   templateUrl: './sidebar-list.component.html',
   styleUrls: ['./sidebar-list.component.scss'],
 })
-export class SidebarListComponent implements OnInit, OnChanges {
+export class SidebarListComponent {
   @Input() contactsByGroup: ContactsByGroup;
-  @Input() editItemId: number;
+  @Input() currentItemId: number;
+  @Input() mode: string;
 
-  constructor() {}
+  @Output() deleteItem: EventEmitter<number> = new EventEmitter();
 
-  ngOnInit(): void {}
-
-  ngOnChanges() {}
+  onDeleteItem(id: number): void {
+    this.deleteItem.emit(id);
+  }
 }

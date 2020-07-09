@@ -1,13 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Contact } from 'src/app/app.model';
+import { Contact, Mode } from 'src/app/app.model';
 
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],
 })
-export class ContactFormComponent implements OnInit {
+export class ContactFormComponent implements OnInit, OnChanges {
+  @Output() formValue: EventEmitter<Contact> = new EventEmitter();
+  @Output() cancelEdit: EventEmitter<void> = new EventEmitter();
   @Input() contact: Contact;
   @Input() mode: string;
   form: FormGroup;
@@ -15,24 +25,40 @@ export class ContactFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.initializeForm();
-    this.setFormValue(this.contact);
+    this.form = this.initializeForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const contact = changes.contact.currentValue;
+    /**
+     * @todo - check how to avoid this check. how to orginize a code?
+     */
+    if (contact && this.form) {
+      this.setFormValue(contact);
+    }
   }
 
   initializeForm() {
-    this.form = this.fb.group({
+    return this.fb.group({
       firstName: [null],
       lastName: [null],
-      phone: [null],
-      email: [null],
-      address: [null],
-      note: [null],
+      phone: [{ value: null, disabled: this.mode === Mode.EDIT }],
+      email: [{ value: null, disabled: this.mode === Mode.EDIT }],
+      address: [{ value: null, disabled: this.mode === Mode.EDIT }],
+      note: [{ value: null, disabled: this.mode === Mode.EDIT }],
     });
   }
 
   setFormValue(contact: Contact): void {
-    if (this.contact) {
-      this.form.patchValue(this.contact);
-    }
+    this.form.patchValue(contact);
+  }
+
+  onSubmitHandler(): void {
+    const contact = Object.assign(this.contact, this.form.value);
+    this.formValue.emit(contact);
+  }
+
+  onCancelHandler(): void {
+    this.cancelEdit.emit();
   }
 }

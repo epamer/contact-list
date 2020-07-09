@@ -1,7 +1,6 @@
-<app-contact-form></app-contact-form>
-
-<app-contact-navbar
-  id="'null'"
+<app-contact-form
   [mode]="mode"
-  (editContact)="onEditContact($event)"
-></app-contact-navbar>
+  (formValue)="onCreateContact($event)"
+  (cancelEdit)="cancelEdit()"
+  [contact]="contact"
+></app-contact-form>

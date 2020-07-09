@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactsByGroup, Contact } from 'src/app/app.model';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { AppService } from 'src/app/app.service';
+import { ContactsByGroup, Contact, Mode } from 'src/app/app.model';
 import { RouterStateService } from 'src/app/router-state.service';
-import { map, startWith } from 'rxjs/operators';
+import { ContactsService } from '../contacts.service';
+import { ModeService } from '../mode.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,35 +16,27 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class SidebarComponent implements OnInit {
   contactsByGroup$: Observable<ContactsByGroup>;
-  editItemId$: Observable<number>;
+  currentItemId$: Observable<number>;
   contacts$: Observable<Contact[]>;
+  mode$: Observable<string>;
 
   constructor(
-    private service: AppService,
-    private routerStateService: RouterStateService
+    private contactsService: ContactsService,
+    private routerStateService: RouterStateService,
+    private router: Router,
+    private modeService: ModeService
   ) {}
 
-  /**
-   * @todo - implement activeItemId
-   */
   ngOnInit(): void {
-    this.contacts$ = this.service.fetchContacts().pipe(startWith([]));
-
-    // this.service
-    //   .createContact({
-    //     address: '56 Maple Trail',
-    //     email: 'gtween0@cnn.com',
-    //     firstName: 'Gar',
-    //     id: 101,
-    //     lastName: 'Tween',
-    //     note: 'Automated multimedia moratorium',
-    //     phone: '197-852-1329',
-    //   })
-    //   .subscribe((contact) => console.log(contact));
-
-    // this.contactsByGroup$ = this.service.getContactsByGroup();
-    this.editItemId$ = this.routerStateService
+    this.contacts$ = this.contactsService.getContacts();
+    this.currentItemId$ = this.routerStateService
       .getRouterParam()
       .pipe(map((id) => +id));
+    this.mode$ = this.modeService.getMode();
+  }
+
+  onDeleteItem(id: number): void {
+    this.contactsService.deleteContact(id);
+    this.router.navigate(['contacts']);
   }
 }

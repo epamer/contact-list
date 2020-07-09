@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RouterStateService } from 'src/app/router-state.service';
 import { AppService } from 'src/app/app.service';
 import { Observable } from 'rxjs';
+import { ContactsService } from 'src/app/contacts.service';
+import { ModeService } from 'src/app/mode.service';
 
 @Component({
   selector: 'app-contact-edit',
@@ -19,22 +21,20 @@ export class ContactEditComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private routerStateService: RouterStateService,
-    private service: AppService
+    private service: AppService,
+    private contactsService: ContactsService,
+    private modeService: ModeService
   ) {}
 
   ngOnInit(): void {
     this.id = this.getItemId();
     this.propagateParamValue(this.id);
-    // this.contact$ = this.getContactById(this.id);
+    this.contact$ = this.getContactById(this.id);
+    this.modeService.setMode(Mode.EDIT);
   }
 
   ngOnDestroy(): void {
     this.propagateParamValue(null);
-  }
-
-  onEditContact(contact: Contact): void {
-    console.log('from details ', contact);
-    this.router.navigate(['/contacts']);
   }
 
   getItemId(): string {
@@ -48,7 +48,16 @@ export class ContactEditComponent implements OnInit, OnDestroy {
     this.routerStateService.setRouterParam(id);
   }
 
-  // getContactById(id: string): Observable<Contact> {
-  //   return this.service.getCotactById(+id);
-  // }
+  getContactById(id: string): Observable<Contact> {
+    return this.service.getContactById(+id);
+  }
+
+  onEditContact(contact: Contact): void {
+    this.contactsService.updateContact(contact);
+    this.router.navigate(['/contacts', this.id]);
+  }
+
+  onCancelEdit(): void {
+    this.router.navigate(['/contacts', this.id]);
+  }
 }

@@ -5,7 +5,9 @@
       <li class="group__item">
         <app-sidebar-item
           [contact]="contact"
-          [editItemId]="editItemId"
+          [currentItemId]="currentItemId"
+          (deleteItem)="onDeleteItem($event)"
+          [mode]="mode"
         ></app-sidebar-item>
       </li>
     </ul>

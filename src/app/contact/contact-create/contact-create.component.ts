@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Mode, Contact } from 'src/app/app.model';
 import { Router } from '@angular/router';
+import { ModeService } from 'src/app/mode.service';
+import { ContactsService } from 'src/app/contacts.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contact-create',
@@ -9,12 +12,28 @@ import { Router } from '@angular/router';
 })
 export class ContactCreateComponent implements OnInit {
   mode: string = Mode.CREATE;
-  constructor(private router: Router) {}
+  contact: Contact = Contact.getInitialState();
+  constructor(
+    private router: Router,
+    private modeService: ModeService,
+    private contactService: ContactsService
+  ) {}
 
   ngOnInit(): void {}
 
-  onEditContact(contact: Contact): void {
-    console.log('from details ', contact);
+  onCreateContact(formValue: Contact): void {
+    this.contactService
+      .createContact(formValue)
+      .subscribe((contact: Contact): void => {
+        this.router.navigate(['/contacts', contact.id]);
+      });
+  }
+
+  cancelEdit() {
     this.router.navigate(['/contacts']);
+  }
+
+  propagateModeValue() {
+    this.modeService.setMode(this.mode);
   }
 }

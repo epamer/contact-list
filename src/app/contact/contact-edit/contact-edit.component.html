@@ -1,7 +1,6 @@
-<app-contact-form [contact]="contact$ | async" [mode]="mode"></app-contact-form>
-
-<app-contact-navbar
-  [id]="id"
+<app-contact-form
+  [contact]="contact$ | async"
   [mode]="mode"
-  (editContact)="onEditContact($event)"
-></app-contact-navbar>
+  (formValue)="onEditContact($event)"
+  (cancelEdit)="onCancelEdit()"
+></app-contact-form>

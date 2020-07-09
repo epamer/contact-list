@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ContactsByGroup } from './app.model';
-
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-
-// import * as data from '../assets/data.json';
-import { mapContacts } from '../utils/data.utils';
-import { Contact } from 'src/app/app.model';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { Contact } from 'src/app/app.model';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -15,41 +11,8 @@ const baseUrl = 'http://localhost:3000';
   providedIn: 'root',
 })
 export class AppService {
-  private contacts$: BehaviorSubject<Contact[]> = new BehaviorSubject([]);
-
   constructor(private http: HttpClient) {}
 
-  // setContacts(value: ContactsByGroup) {
-  //   this.contacts$.next(value);
-  // }
-
-  // getContactsByGroup(): BehaviorSubject<ContactsByGroup> {
-  //   const contactsByGroup = mapContacts(data.contacts);
-
-  //   this.setContacts(contactsByGroup);
-  //   return this.contacts$;
-  // }
-
-  // getCotactById(id: number): Observable<Contact> {
-  //   return this.contacts$.pipe(
-  //     map(
-  //       (obj: ContactsByGroup): Contact => {
-  //         const entries = Object.entries(obj);
-  //         for (const entry of entries) {
-  //           const [key, value] = entry;
-  //           const item = value.find((contact: Contact) => contact.id === id);
-  //           if (item) {
-  //             return item;
-  //           }
-  //         }
-  //       }
-  //     )
-  //   );
-  // }
-
-  /**
-   * @todo- implement add, edit, remove methods
-   */
   fetchContacts(): Observable<Contact[]> {
     return this.http.get<Contact[]>(`${baseUrl}/contacts`);
   }
@@ -63,8 +26,7 @@ export class AppService {
   }
 
   updateContact(contact: Contact): Observable<Contact> {
-    const { id } = contact;
-    return this.http.put<Contact>(`${baseUrl}/contacts/${id}`, contact);
+    return this.http.put<Contact>(`${baseUrl}/contacts/${contact.id}`, contact);
   }
 
   deleteContact(id: number): Observable<void> {

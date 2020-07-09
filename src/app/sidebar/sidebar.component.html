@@ -1,6 +1,8 @@
 <aside class="container">
   <app-sidebar-list
     [contactsByGroup]="contacts$ | async | contactsByGroup"
-    [editItemId]="editItemId$ | async"
+    [currentItemId]="currentItemId$ | async"
+    (deleteItem)="onDeleteItem($event)"
+    [mode]="mode$ | async"
   ></app-sidebar-list>
 </aside>

@@ -1,44 +1,66 @@
 <main class="dashboard">
-  <p *ngIf="!contact?.id; else details">Here should be default content</p>
+  <article
+    class="dashboard__content contact container"
+    *ngIf="contact$ | async as contact; else default"
+  >
+    <header>
+      <h1 class="contact__header">
+        {{ contact.firstName }} {{ contact.lastName }}
+      </h1>
+    </header>
 
-  <ng-template #details>
-    <article class="dashboard__content contact container">
-      <header>
-        <h1 class="contact__header">
-          {{ contact?.firstName }} {{ contact?.lastName }}
-        </h1>
-      </header>
+    <div class="contact__details">
+      <p class="contact__item">
+        <span class="contact__title">phone</span>
+        {{ contact.phone }}
+      </p>
+      <mat-divider></mat-divider>
 
-      <div class="contact__details">
-        <p class="contact__item">
-          <span class="contact__title">phone</span>
-          {{ contact?.phone }}
-        </p>
-        <mat-divider></mat-divider>
+      <p class="contact__item">
+        <span class="contact__title">email</span>
+        {{ contact.email }}
+      </p>
 
-        <p class="contact__item">
-          <span class="contact__title">email</span>
-          {{ contact?.email }}
-        </p>
+      <mat-divider></mat-divider>
 
-        <mat-divider></mat-divider>
+      <p class="contact__item">
+        <span class="contact__title">address</span>
+        {{ contact.address }}
+      </p>
 
-        <p class="contact__item">
-          <span class="contact__title">address</span>
-          {{ contact?.address }}
-        </p>
+      <mat-divider></mat-divider>
 
-        <mat-divider></mat-divider>
+      <p class="contact__item">
+        <span class="contact__title">note</span>
+        {{ contact.note }}
+      </p>
+    </div>
+  </article>
 
-        <p class="contact__item">
-          <span class="contact__title">note</span>
-          {{ contact?.note }}
-        </p>
-      </div>
-    </article>
+  <ng-template #default>
+    <p>
+      Here should be default content...
+    </p>
   </ng-template>
 
-  <div class="dashboard__navbaar">
-    <app-contact-navbar [id]="id" [mode]="mode"></app-contact-navbar>
+  <div class="dashboard__navbar container">
+    <nav class="navbar">
+      <a
+        class="navbar__btn navbart__btn--add"
+        mat-stroked-button
+        [routerLink]="['/contacts', 'create']"
+      >
+        +
+      </a>
+
+      <a
+        *ngIf="id$ | async as id"
+        class="navbar__btn navbart__btn--add"
+        mat-stroked-button
+        [routerLink]="['/contacts', 'edit', id]"
+      >
+        Edit
+      </a>
+    </nav>
   </div>
 </main>

@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ContactModule } from './contact/contact.module';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -22,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientModule,
     ContactModule,
     MatButtonModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "prettier:check": "prettier --check \"src/**\"",
     "prettier:write": "prettier --write \"src/**\"",
-    "server": "json-server src/assets/data.json"
+    "server": "json-server server/data.json"
 
   },
   "private": true,

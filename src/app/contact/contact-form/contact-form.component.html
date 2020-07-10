@@ -1,5 +1,5 @@
 <div class="layout">
-  <form class="form" [formGroup]="form" (ngSubmit)="onSubmitHandler()">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmitHandler($event)">
     <div class="form__header container">
       <div class="form__item form__item--column">
         <label for="firstName" class="form__label">first name</label
@@ -74,7 +74,6 @@
     <div class="form__footer container">
       <button
         class="form__btn"
-        type="submit"
         mat-stroked-button
         *ngIf="form.dirty; else cancelBtn"
         [disabled]="form.invalid"

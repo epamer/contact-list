@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 import { Contact } from 'src/app/app.model';
 
@@ -10,7 +9,7 @@ const baseUrl = 'http://localhost:3000';
 @Injectable({
   providedIn: 'root',
 })
-export class AppService {
+export class HttpService {
   constructor(private http: HttpClient) {}
 
   fetchContacts(): Observable<Contact[]> {

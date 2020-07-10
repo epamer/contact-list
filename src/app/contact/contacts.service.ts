@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { Contact } from 'src/app/app.model';
-import { AppService } from './app.service';
-import { tap, catchError } from 'rxjs/operators';
+import { HttpService } from '../shared/services/http.service';
+import { tap, catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ import { tap, catchError } from 'rxjs/operators';
 export class ContactsService {
   private contacts$: BehaviorSubject<Contact[]> = new BehaviorSubject([]);
 
-  constructor(private httpService: AppService) {}
+  constructor(private httpService: HttpService) {}
 
   init(): Observable<Contact[]> {
     return this.httpService.fetchContacts().pipe(
@@ -47,26 +47,38 @@ export class ContactsService {
     );
   }
 
-  deleteContact(id: number): void {
-    this.httpService.deleteContact(id).subscribe((value) => {
-      console.log(value);
-      const contacts = this.contacts$
-        .getValue()
-        .filter((contact) => contact.id !== id);
-      this.contacts$.next(contacts);
-    });
+  deleteContact(id: number): Observable<number> {
+    return this.httpService.deleteContact(id).pipe(
+      map(() => {
+        const contacts = this.contacts$
+          .getValue()
+          .filter((contact) => contact.id !== id);
+        this.contacts$.next(contacts);
+        return id;
+      }),
+      catchError((error) => {
+        console.log(error);
+        return of(error);
+      })
+    );
   }
 
-  updateContact(newContact: Contact): void {
+  updateContact(newContact: Contact): Observable<Contact> {
     const { id } = newContact;
-    this.httpService.updateContact(newContact).subscribe(() => {
-      const contacts = this.contacts$.getValue().map((el) => {
-        if (el.id === id) {
-          return newContact;
-        }
-        return el;
-      });
-      this.contacts$.next(contacts);
-    });
+    return this.httpService.updateContact(newContact).pipe(
+      tap((contact: Contact): void => {
+        const contacts = this.contacts$.getValue().map((el) => {
+          if (el.id === id) {
+            return contact;
+          }
+          return el;
+        });
+        this.contacts$.next(contacts);
+      }),
+      catchError((error) => {
+        console.log(error);
+        return of(error);
+      })
+    );
   }
 }

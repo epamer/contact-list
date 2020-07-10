@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ContactsByGroup, Contact, Mode } from 'src/app/app.model';
-import { RouterStateService } from 'src/app/router-state.service';
-import { ContactsService } from '../contacts.service';
-import { ModeService } from '../mode.service';
+import { RouterStateService } from 'src/app/shared/services/router-state.service';
+import { ContactsService } from '../contact/contacts.service';
+import { ModeService } from '../shared/services/mode.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
   }
 
   onDeleteItem(id: number): void {
-    this.contactsService.deleteContact(id);
+    this.contactsService.deleteContact(id).subscribe();
     this.router.navigate(['contacts']);
   }
 }

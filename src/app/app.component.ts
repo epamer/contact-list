@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ContactsService } from 'src/app/contacts.service';
+import { ContactsService } from 'src/app/contact/contacts.service';
 import { Subscription } from 'rxjs';
 
 @Component({

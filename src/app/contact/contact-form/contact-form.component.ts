@@ -53,7 +53,7 @@ export class ContactFormComponent implements OnInit, OnChanges {
     this.form.patchValue(contact);
   }
 
-  onSubmitHandler(): void {
+  onSubmitHandler(e: any): void {
     const contact = Object.assign(this.contact, this.form.value);
     this.formValue.emit(contact);
   }

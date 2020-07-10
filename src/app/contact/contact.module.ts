@@ -7,7 +7,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { ContactFormComponent } from './contact-form/contact-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,10 +19,12 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatDividerModule,
     RouterModule,
+    SharedModule,
   ],
 })
 export class ContactModule {}

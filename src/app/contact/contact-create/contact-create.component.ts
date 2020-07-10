@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Mode, Contact } from 'src/app/app.model';
 import { Router } from '@angular/router';
-import { ModeService } from 'src/app/mode.service';
-import { ContactsService } from 'src/app/contacts.service';
-import { tap } from 'rxjs/operators';
+import { ModeService } from 'src/app/shared/services/mode.service';
+import { ContactsService } from 'src/app/contact/contacts.service';
 
 @Component({
   selector: 'app-contact-create',

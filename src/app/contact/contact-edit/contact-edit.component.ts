@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Mode, Contact } from 'src/app/app.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RouterStateService } from 'src/app/router-state.service';
-import { AppService } from 'src/app/app.service';
+import { RouterStateService } from 'src/app/shared/services/router-state.service';
+import { HttpService } from 'src/app/shared/services/http.service';
 import { Observable } from 'rxjs';
-import { ContactsService } from 'src/app/contacts.service';
-import { ModeService } from 'src/app/mode.service';
+import { ContactsService } from 'src/app/contact/contacts.service';
+import { ModeService } from 'src/app/shared/services/mode.service';
 
 @Component({
   selector: 'app-contact-edit',
@@ -21,7 +21,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private routerStateService: RouterStateService,
-    private service: AppService,
+    private httpService: HttpService,
     private contactsService: ContactsService,
     private modeService: ModeService
   ) {}
@@ -49,11 +49,11 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   }
 
   getContactById(id: string): Observable<Contact> {
-    return this.service.getContactById(+id);
+    return this.httpService.getContactById(+id);
   }
 
   onEditContact(contact: Contact): void {
-    this.contactsService.updateContact(contact);
+    this.contactsService.updateContact(contact).subscribe();
     this.router.navigate(['/contacts', this.id]);
   }
 

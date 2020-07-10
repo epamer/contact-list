@@ -9,11 +9,11 @@ import {
   tap,
   takeWhile,
 } from 'rxjs/operators';
-import { AppService } from 'src/app/app.service';
+import { HttpService } from 'src/app/shared/services/http.service';
 import { Observable, of } from 'rxjs';
-import { ModeService } from 'src/app/mode.service';
+import { ModeService } from 'src/app/shared/services/mode.service';
 import { Mode } from '../../app.model';
-import { RouterStateService } from 'src/app/router-state.service';
+import { RouterStateService } from 'src/app/shared/services/router-state.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -27,7 +27,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private appService: AppService,
+    private httpService: HttpService,
     private modeService: ModeService,
     private routerStateService: RouterStateService
   ) {}
@@ -66,7 +66,7 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   getContactById(id: number): Observable<Contact> {
     const initialState = Contact.getInitialState();
-    return this.appService.getContactById(id).pipe(startWith(initialState));
+    return this.httpService.getContactById(id).pipe(startWith(initialState));
   }
 
   propagateParamValue(id$: Observable<string | null>): void {

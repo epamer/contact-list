@@ -22,20 +22,15 @@ export class ContactFormComponent implements OnInit, OnChanges {
   @Input() mode: string;
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) {
     this.form = this.initializeForm();
   }
 
+  ngOnInit(): void {}
+
   ngOnChanges(changes: SimpleChanges): void {
     const contact = changes.contact.currentValue;
-    /**
-     * @todo - check how to avoid this check. how to orginize a code?
-     */
-    if (contact && this.form) {
-      this.setFormValue(contact);
-    }
+    this.setFormValue(contact);
   }
 
   initializeForm() {
@@ -50,6 +45,7 @@ export class ContactFormComponent implements OnInit, OnChanges {
   }
 
   setFormValue(contact: Contact): void {
+    console.log(contact);
     this.form.patchValue(contact);
   }
 

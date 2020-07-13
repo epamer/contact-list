@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DilogComponent } from './dilog/dilog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
-  declarations: [DilogComponent],
-  imports: [CommonModule],
-  exports: [DilogComponent],
+  declarations: [DialogComponent],
+  imports: [CommonModule, MatDialogModule, MatButtonModule],
+  exports: [DialogComponent],
 })
 export class SharedModule {}

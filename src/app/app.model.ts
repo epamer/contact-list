@@ -57,73 +57,15 @@ export interface ContactsByGroup {
   [key: string]: Contact[];
 }
 
-/**
- * @todo - find appropriate place for the things below
- */
-
 export enum Mode {
   DETAILS = 'details',
   CREATE = 'create',
   EDIT = 'edit',
 }
 
-// export interface ModeTypes {
-//   [key: string]: boolean;
-// }
-
-// export interface FormFields {
-//   firstName: ModeTypes;
-//   lastName: ModeTypes;
-//   phone: ModeTypes;
-//   email: ModeTypes;
-//   address: ModeTypes;
-//   note: ModeTypes;
-// }
-
-// export interface ModeConfig {
-//   displayInputLabels: ModeTypes;
-//   displayBtnEdit: ModeTypes;
-//   readOnlyFields: Partial<FormFields>;
-// }
-
-// export class ModeConfig implements ModeConfig {
-//   public displayInputLabels: ModeTypes;
-//   public displayBtnEdit: ModeTypes;
-//   public readOnlyFields: Partial<FormFields>;
-
-//   constructor({
-//     displayInputLabels,
-//     displayBtnEdit,
-//     readOnlyFields,
-//   }: ModeConfig) {
-//     Object.assign(this, { displayInputLabels, displayBtnEdit, readOnlyFields });
-//   }
-
-//   static init() {
-//     const config = {
-//       displayInputLabels: {
-//         edit: true,
-//         create: true,
-//       },
-//       displayBtnEdit: {
-//         details: true,
-//       },
-//       readOnlyFields: {
-//         phone: {
-//           edit: true,
-//         },
-
-//         email: {
-//           edit: true,
-//         },
-//         address: {
-//           edit: true,
-//         },
-//         note: {
-//           edit: true,
-//         },
-//       },
-//     };
-//     return new this(config);
-//   }
-// }
+export interface DialogData {
+  title?: string;
+  text?: string;
+  noBtnTitle?: string;
+  yesBtnTitle?: string;
+}
